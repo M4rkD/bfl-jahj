@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<SAGA_METADATA>
+  <HISTORY saga-version="2.3.2">
+    <MODULE library="shapes_points" id="19" name="Snap Points to Lines">
+      <OPTION type="double" id="DISTANCE" name="Search Distance">100.000000</OPTION>
+      <INPUT type="shapes" id="INPUT" name="Points">
+        <FILE>C:/Users/josh/OneDrive - Swansea University/projects/FR_fragmentation/derived_data/corsica/CO_barriers_ED50.shp</FILE>
+      </INPUT>
+      <INPUT type="shapes" id="SNAP" name="Snap Features">
+        <FILE>C:/Users/josh/OneDrive - Swansea University/projects/FR_fragmentation/derived_data/corsica/CO_RHT_rivers_ED50.shp</FILE>
+      </INPUT>
+      <OUTPUT type="shapes" id="OUTPUT" name="Result">CO_barriers_ED50 [snapped: CO_RHT_rivers_ED50]</OUTPUT>
+    </MODULE>
+  </HISTORY>
+  <SOURCE>
+    <FILE></FILE>
+    <DATABASE>
+      <FIELDS>
+        <FIELD TYPE="LONGINT">fid</FIELD>
+        <FIELD TYPE="STRING">DBName</FIELD>
+        <FIELD TYPE="STRING">BarrierNam</FIELD>
+        <FIELD TYPE="DOUBLE">Longitude_</FIELD>
+        <FIELD TYPE="DOUBLE">Latitude_W</FIELD>
+        <FIELD TYPE="STRING">BarrierTyp</FIELD>
+        <FIELD TYPE="STRING">LabelAtlas</FIELD>
+        <FIELD TYPE="DOUBLE">Height</FIELD>
+        <FIELD TYPE="STRING">RiverName</FIELD>
+        <FIELD TYPE="STRING">BasinName</FIELD>
+        <FIELD TYPE="LONGINT">FishPassTy</FIELD>
+        <FIELD TYPE="STRING">For_filter</FIELD>
+        <FIELD TYPE="STRING">Selected_d</FIELD>
+      </FIELDS>
+    </DATABASE>
+    <PROJECTION>
+      <OGC_WKT>PROJCS["ED50_France_EuroLambert_deprecated",GEOGCS["GCS_European_1950",DATUM["D_European_1950",SPHEROID["International_1924",6378388,297]],PRIMEM["Greenwich",0],UNIT["Degree",0.017453292519943295]],PROJECTION["Lambert_Conformal_Conic"],PARAMETER["latitude_of_origin",46.8],PARAMETER["central_meridian",2.337229166666667],PARAMETER["scale_factor",0.99987742],PARAMETER["false_easting",600000],PARAMETER["false_northing",2200000],UNIT["Meter",1],PARAMETER["standard_parallel_1",46.8]]</OGC_WKT>
+      <PROJ4>+proj=lcc +a=6378388.000000 +b=6356911.946128 +lat_0=46.8 +lon_0=2.337229166666667 +k_0=0.99987742 +x_0=600000 +y_0=2200000 +lat_1=46.8 +no_defs</PROJ4>
+      <EPSG>-1</EPSG>
+    </PROJECTION>
+  </SOURCE>
+  <DESCRIPTION></DESCRIPTION>
+</SAGA_METADATA>
