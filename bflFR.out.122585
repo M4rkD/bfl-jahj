@@ -1,0 +1,29 @@
+FR_five_basins.shp
+FR_five_basins_barriers.shp
+2192
+1
+Reading layer `FR_five_basins' from data source `/lustrehome/home/s.j.a.h.jones/bfl/FR_five_basins.shp' using driver `ESRI Shapefile'
+Simple feature collection with 3998 features and 8 fields
+geometry type:  LINESTRING
+dimension:      XY
+bbox:           xmin: 286907.2 ymin: 1746657 xmax: 438082.2 ymax: 1971057
+epsg (SRID):    2192
+proj4string:    +proj=lcc +lat_1=46.8 +lat_0=46.8 +lon_0=2.337229166666667 +k_0=0.99987742 +x_0=600000 +y_0=2200000 +ellps=intl +towgs84=-87,-98,-121,0,0,0,0 +units=m +no_defs
+Reading layer `FR_five_basins_barriers' from data source `/lustrehome/home/s.j.a.h.jones/bfl/FR_five_basins_barriers.shp' using driver `ESRI Shapefile'
+Simple feature collection with 5000 features and 13 fields
+geometry type:  POINT
+dimension:      XY
+bbox:           xmin: 271582.2 ymin: 1745947 xmax: 468465.1 ymax: 1971673
+epsg (SRID):    2192
+proj4string:    +proj=lcc +lat_1=46.8 +lat_0=46.8 +lon_0=2.337229166666667 +k_0=0.99987742 +x_0=600000 +y_0=2200000 +ellps=intl +towgs84=-87,-98,-121,0,0,0,0 +units=m +no_defs
+Reading layer `FR_boundary_10km' from data source `/lustrehome/home/s.j.a.h.jones/bfl/FR_boundary_10km.shp' using driver `ESRI Shapefile'
+Simple feature collection with 2 features and 3 fields
+geometry type:  POLYGON
+dimension:      XY
+bbox:           xmin: 38295.79 ymin: 1610694 xmax: 1208008 ymax: 2687321
+epsg (SRID):    2192
+proj4string:    +proj=lcc +lat_1=46.8 +lat_0=46.8 +lon_0=2.337229166666667 +k_0=0.99987742 +x_0=600000 +y_0=2200000 +ellps=intl +towgs84=-87,-98,-121,0,0,0,0 +units=m +no_defs
+Writing layer `BFLS113752_2019-09-04' to data source `BFLS113752_2019-09-04.shp' using driver `ESRI Shapefile'
+features:       5524
+fields:         13
+geometry type:  Line String

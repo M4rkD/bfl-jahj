@@ -1,0 +1,15 @@
+
+Reading layer `basinRivers143026_2019-07-04' from data source `/home/mark/code/josh_sunbird/bfl_sunbird/basinRivers143026_2019-07-04.shp' using driver `ESRI Shapefile'
+Simple feature collection with 1774 features and 7 fields
+geometry type:  LINESTRING
+dimension:      XY
+bbox:           xmin: 1114528 ymin: 1621665 xmax: 1197728 ymax: 1804040
+epsg (SRID):    NA
+proj4string:    +proj=lcc +lat_1=46.8 +lat_0=46.8 +lon_0=2.337229166666667 +k_0=0.99987742 +x_0=600000 +y_0=2200000 +ellps=intl +units=m +no_defs
+Reading layer `CO_barriers_ED50_snapped' from data source `/home/mark/code/josh_sunbird/bfl_sunbird/CO_barriers_ED50_snapped.shp' using driver `ESRI Shapefile'
+Simple feature collection with 273 features and 13 fields
+geometry type:  POINT
+dimension:      XY
+bbox:           xmin: 1120277 ymin: 1630236 xmax: 1193362 ymax: 1800423
+epsg (SRID):    2192
+proj4string:    +proj=lcc +lat_1=46.8 +lat_0=46.8 +lon_0=2.337229166666667 +k_0=0.99987742 +x_0=600000 +y_0=2200000 +ellps=intl +towgs84=-87,-98,-121,0,0,0,0 +units=m +no_defs
