@@ -11,7 +11,7 @@
 #maximum job time in D-HH:MM
 #SBATCH --time=3-00:00
 #number of parallel processes (tasks) you are requesting - maps to MPI processes
-#SBATCH --ntasks=120
+#SBATCH --ntasks=40
 #memory per process in MB 
 #SBATCH --mem-per-cpu=1200
 #tasks to run per node (change for hybrid OpenMP/MPI) 
