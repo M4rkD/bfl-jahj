@@ -18,6 +18,9 @@ library(lwgeom)
 # both versions of the st_parallel function
 source("st_parallel.R")
 
+parallel_total <- 0
+start_time <- Sys.time()
+
 # inputs
 args <- commandArgs(trailingOnly = TRUE)
 cat(args, sep = "\n")
@@ -172,5 +175,11 @@ BFLS <- joinedRivers %>%
 message('Writing output...')
 timedate <- paste0(format(Sys.time(), "%H%M%S"), "_", Sys.Date())
 st_write(BFLS, paste0("BFLS", timedate, ".shp"), delete_layer = TRUE) # overwrites
+
+end_time <- Sys.time()
+total_time <- as.numeric(end_time - start_time, unit="secs")
+message('total time = ', total_time)
+message('parallel total = ', parallel_total)
+message('TIME IN PARALLEL: ', (parallel_total / total_time)*100, '%')
 
 quit()

@@ -31,8 +31,13 @@ st_parallel <- function(sf_df, sf_func, n_cores, ...){
   split_vector <- rep(1:n_cores, each = nrow(sf_df) / n_cores, length.out = nrow(sf_df))
 
   # Perform GIS analysis
+  start_parallel <- Sys.time()
   split_results <- split(sf_df, split_vector) %>%
     parallel::mclapply(function(x) sf_func(x, ...), mc.cores = n_cores)
+  parallel_time <- as.numeric(Sys.time() - start_parallel, unit="secs")
+  parallel_total <<- parallel_time + parallel_total
+
+  message('parallel region = ', parallel_time)
 
 
   # Define the output_class. If length is greater than two, then grab the second variable.
