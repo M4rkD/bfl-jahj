@@ -18,7 +18,11 @@
 ###
 
 #now run normal batch commands 
-module load R/3.5.3 compiler/intel/2018/2 udunits gdal proj/4.9.3 szip
-export CXX='icpc -std=c++11' UDUNITS2_LIBS=/apps/libraries/udunits/2.2.26/el7/AVX512/intel-2018/lib R_HOME=/apps/languages/R/3.5.3/el7/AVX512/intel-2018/lib64/R R_LIBS_USER=/scratch/s.j.a.h.jones/R_sf
+module load R/3.5.3 compiler/intel/2018/2 udunits gdal proj/4.9.3 szip geos
+export CXX='icpc -std=c++11' UDUNITS2_LIBS=/apps/libraries/udunits/2.2.26/el7/AVX512/intel-2018/lib R_HOME=/apps/languages/R/3.5.3/el7/AVX512/intel-2018/lib64/R R_LIBS_USER=/scratch/$USER/R_sf
+
+# required for compilation of lwgeom
+#export LIBRARY_PATH=/apps/libraries/geos/3.7.0/el7/AVX512/intel-2018/lib
+
 
 time Rscript bfl_sunbird.R FR_five_basins.shp FR_five_basins_barriers.shp 2192 $SLURM_NTASKS
