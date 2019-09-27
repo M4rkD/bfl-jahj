@@ -1,7 +1,7 @@
 #!/bin/bash --login
 ###
 # project code
-#SBATCH --account=scw1433
+#SBATCH --account=scw1000
 #job name
 #SBATCH --job-name=bflFR
 #job stdout file
