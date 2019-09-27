@@ -29,6 +29,9 @@ barriers <- args[2] # format barriers.shp # snapped barriers because snapping ta
 epsg <- as.numeric(args[3]) # format 2192
 ncores <- as.numeric(args[4]) # format 1
 
+message("number cores detected: ", detectCores())
+message("number cores running: ", ncores)
+
 message(paste0('Calculating barrier free length for ', basinRivers, ' using ', ncores, ' cores.'))
 
 # rivers
