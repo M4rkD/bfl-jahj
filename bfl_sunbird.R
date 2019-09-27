@@ -86,16 +86,11 @@ message('Snapping barriers snapped to the river...')
 #   st_transform(epsg)
 
 # Buffer barriers
-start_time <- Sys.time()
-
 message('Buffering barriers for cutting the river...')
 buffBarriers <- st_parallel(snapped, st_buffer, ncores, dist = 0.0001) %>%
   as('Spatial') %>%
   st_as_sf() %>%
   st_transform(epsg)
-
-end_time <- Sys.time()
-message('buffering rivers time = ', end_time - start_time)
 
 # to make things faster we could only process a subset
 # select river sections with barriers on them and export then only
@@ -103,7 +98,6 @@ message('buffering rivers time = ', end_time - start_time)
 # then bind the rows back together 
 # i.e. rows_without_barriers + cut_rows_with_barriers
 
-start_time <- Sys.time()
 # Difference river network using buffered barriers
 message('Erasing rivers erased using buffered barriers...')
 diffRivers <- st_erase(basinRivers, buffBarriers) %>%
@@ -116,79 +110,44 @@ diffRivers <- st_erase(basinRivers, buffBarriers) %>%
 #   st_transform(epsg)
 
 
-end_time <- Sys.time()
-message('erasing rivers time = ', end_time - start_time)
-
-start_time <- Sys.time()
 # Create river polygons and split them into seperate segments
 message('Buffering differenced rivers...')
 buffRivers <- st_parallel(diffRivers, st_buffer, ncores, dist = 0.00009)
 
-end_time <- Sys.time()
-message('buffering diff rivers time = ', end_time - start_time)
-
-start_time <- Sys.time()
 # Clip river polygons to study site boundary
 clipRiver <- st_parallel(buffRivers, st_crop, ncores, boundary)
 
-end_time <- Sys.time()
-message('clipping buff rivers time = ', end_time - start_time)
-
-start_time <- Sys.time()
 # Fix geom just in case
 message('Fixing invald geometry...')
 geomfix <- st_parallel(clipRiver, st_make_valid, ncores) %>% 
     as('Spatial') %>% 
     st_as_sf()
 
-end_time <- Sys.time()
-message('fixing geom time = ', end_time - start_time)
-
-start_time <- Sys.time()
 # Dissolving buffered and clipped rivers
 message('Dissolving river polygons...')
 dissRivers <- st_parallel(geomfix, st_union, ncores) %>% 
     as('Spatial') %>% 
     st_as_sf()
 
-end_time <- Sys.time()
-message('dissolving rivers time = ', end_time - start_time)
-
-start_time <- Sys.time()
 
 message('Casting river polygon into singlepart polygons...')
 singlepartpoly <- st_cast(dissRivers, 'POLYGON') %>%
   mutate(id = as.factor(row_number()))
 
-end_time <- Sys.time()
-message('NOT PARALLEL casting to singlepart time = ', end_time - start_time)
-
-# start_time <- Sys.time()
 
 # # I think this is parallelised. Although it's only 0.5 seconds faster than in series...
 # message('Converting river polygons into river lines in parallel...')
 # singlepartline <- do.call(rbind, mclapply(1:nrow(diffRivers), 
 #   function(i){st_cast(diffRivers[i,],"LINESTRING")}), ncores)
 
-# end_time <- Sys.time()
-# message('WITH NCORES polygon to line time = ', end_time - start_time)
-
-start_time <- Sys.time()
 
 message('Converting river polygons into river lines in parallel...')
 singlepartline <- do.call(rbind, mclapply(1:nrow(diffRivers), 
   function(i){st_cast(diffRivers[i,],"LINESTRING")}))
 
-end_time <- Sys.time()
-message('WITHOUT NCORES polygon to line time = ', end_time - start_time)
-
-start_time <- Sys.time()
 # Bring attributes back together
 message('Joining attributes joined back to basin rivers...')
 joinedRivers <- st_parallel(singlepartline, st_join, ncores, singlepartpoly)
-
-end_time <- Sys.time()
-message('joining attributes time = ', end_time - start_time)
 
 # calculate components of BFL
 message('Generating final output..')
