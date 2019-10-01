@@ -1,5 +1,5 @@
 Some parallel timings in job 126864 -> only 3% of runtime
 Submitted batch job 127658 => running RProf (hopefully more insight) => this failed
 Profiling run using Rprof => 127659 (generate RProf.out)
-Submitted batch job 127745 => Rprof.out with line number info
-
+Submitted batch job 127745 => Rprof.out with line number info, given by proftools:
+https://cran.r-project.org/web/packages/proftools/vignettes/proftools.pdf
