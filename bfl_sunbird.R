@@ -29,7 +29,7 @@ barriers <- args[2] # format barriers.shp # snapped barriers because snapping ta
 epsg <- as.numeric(args[3]) # format 2192
 ncores <- as.numeric(args[4]) # format 1
 
-Rprof()
+Rprof(gc.profiling = TRUE, line.profiling = TRUE)
 
 message("number cores detected: ", detectCores())
 message("number cores running: ", ncores)
