@@ -11,7 +11,7 @@
 #maximum job time in D-HH:MM
 #SBATCH --time=3-00:00
 #number of parallel processes (tasks) you are requesting - maps to MPI processes
-#SBATCH --ntasks=40
+#SBATCH --ntasks=1
 #memory per process in MB 
 #SBATCH --mem-per-cpu=16000 
 #tasks to run per node (change for hybrid OpenMP/MPI) 
@@ -23,6 +23,5 @@ export CXX='icpc -std=c++11' UDUNITS2_LIBS=/apps/libraries/udunits/2.2.26/el7/AV
 
 # required for compilation of lwgeom
 #export LIBRARY_PATH=/apps/libraries/geos/3.7.0/el7/AVX512/intel-2018/lib
-
 
 time Rscript bfl_sunbird.R FR_five_basins.shp FR_five_basins_barriers.shp 2192 $SLURM_NTASKS

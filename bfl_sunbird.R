@@ -22,12 +22,10 @@ parallel_total <- 0
 start_time <- Sys.time()
 
 # inputs
-args <- commandArgs(trailingOnly = TRUE)
-cat(args, sep = "\n")
-basinRivers <- args[1] # format basin_rivers.shp, make sure it's basin_rivers.shp !!!!!!
-barriers <- args[2] # format barriers.shp # snapped barriers because snapping takes too long in sf - use QGIS (SAGA)
-epsg <- as.numeric(args[3]) # format 2192
-ncores <- as.numeric(args[4]) # format 1
+basinRivers <- "FR_five_basins.shp"
+barriers <- "FR_five_basins_barriers.shp"
+epsg <- 2192
+ncores <- 1
 
 Rprof(gc.profiling = TRUE, line.profiling = TRUE)
 
