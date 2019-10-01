@@ -1,0 +1,3 @@
+Some parallel timings in job 126864 -> only 3% of runtime
+Submitted batch job 127658 => running RProf (hopefully more insight) => this failed
+Profiling run using Rprof => 127659 (generate RProf.out)

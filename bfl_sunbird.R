@@ -29,6 +29,8 @@ barriers <- args[2] # format barriers.shp # snapped barriers because snapping ta
 epsg <- as.numeric(args[3]) # format 2192
 ncores <- as.numeric(args[4]) # format 1
 
+Rprof()
+
 message("number cores detected: ", detectCores())
 message("number cores running: ", ncores)
 
@@ -178,6 +180,9 @@ BFLS <- joinedRivers %>%
 message('Writing output...')
 timedate <- paste0(format(Sys.time(), "%H%M%S"), "_", Sys.Date())
 st_write(BFLS, paste0("BFLS", timedate, ".shp"), delete_layer = TRUE) # overwrites
+
+Rprof(NULL)
+summaryRprof()
 
 end_time <- Sys.time()
 total_time <- as.numeric(end_time - start_time, unit="secs")
