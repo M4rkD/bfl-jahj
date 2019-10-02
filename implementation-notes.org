@@ -1,0 +1,52 @@
+** snapped 
+Two cols -> Type (LabelAtlas) and point (x/y coord)
+
+Types are:
+#+begin_src 
+[1] Culvert       dam           Ford          Ramp/bed_sill sluice       
+[6] unknown       weir         
+#+end_src
+
+** A point is:
+   Print string
+#+begin_src R
+Geometry set for 0 features 
+bbox:           xmin: NA ymin: NA xmax: NA ymax: NA
+epsg (SRID):    2192
+proj4string:    +proj=lcc +lat_1=46.8 +lat_0=46.8 +lon_0=2.337229166666667 +k_0=0.99987742 +x_0=600000 +y_0=2200000 +ellps=intl +towgs84=-87,-98,-121,0,0,0,0 +units=m +no_defs
+#+end_src
+
+> typeof(point)
+[1] "list"
+> class(point)
+[1] "sfc_GEOMETRY" "sfc"         
+
+* buffBarriers
+-> the snapped barriers are transformed to polygons
+-> Two rows (LabelAtlas, geometry) and a row ID (e.g. 1.1, 1.2)
+They're 1.x, 2.x, 3.x and 4.x
+
+Still 5000 entries, second part of index is 5000, first part changes at:
+
+1 - 1 -> 1250
+2 - 1251 -> 2500
+3 - 2501 -> 3750
+4 - 3751 -> 5000
+
+So, they're grouped (by processor I think! I have 4 processors)
+
+Note, 1250 on each
+* basinRivers
+  ID_DRAIN
+  NOM_RHT
+  TOPONYME_R
+  NOM_SIMPLI
+  ID_TRHYD
+  IDRHE
+  len -> I think this might just be in meters or something
+  basinID -> shared between multiple rows
+  geometry -> linestring -> looks like a list of pairs of points
+* diffRivers
+This is where it gets interesting...
+* IMPORTANT...!
+** THE WORK IS DIVIDED EVENLY BY NUMBER, APRIORI - not in a queue/workers
