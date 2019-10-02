@@ -1,0 +1,80 @@
+
+Attaching package: ‘dplyr’
+
+The following objects are masked from ‘package:stats’:
+
+    filter, lag
+
+The following objects are masked from ‘package:base’:
+
+    intersect, setdiff, setequal, union
+
+Linking to GEOS 3.7.0, GDAL 2.3.2, PROJ 4.9.3
+Linking to liblwgeom 2.5.0dev r16016, GEOS 3.7.0, PROJ 4.9.3
+number cores detected: 40
+number cores running: 1
+Calculating barrier free length for FR_five_basins.shp using 1 cores.
+Snapping barriers snapped to the river...
+1-load.RData0.480542421340942
+Warning message:
+In save(file = "1-load.RData") : nothing specified to be save()d
+Buffering barriers for cutting the river...
+parallel region = 0.333215951919556
+2-after-buffering.RData2.24710774421692
+Warning message:
+In save(file = "2-after-buffering.RData") : nothing specified to be save()d
+Erasing rivers erased using buffered barriers...
+Warning message:
+attribute variables are assumed to be spatially constant throughout all geometries 
+3-after-erasing.RData3.59226343631744
+Warning message:
+In save(file = "3-after-erasing.RData") : nothing specified to be save()d
+Buffering differenced rivers...
+parallel region = 1.26777172088623
+4-after-diff-buffering.RData1.33408808708191
+Warning message:
+In save(file = "4-after-diff-buffering.RData") :
+  nothing specified to be save()d
+parallel region = 1.95453453063965
+Warning message:
+attribute variables are assumed to be spatially constant throughout all geometries 
+5-after-clip-river.RData2.02077794075012
+Warning message:
+In save(file = "5-after-clip-river.RData") :
+  nothing specified to be save()d
+Fixing invald geometry...
+parallel region = 2.08577656745911
+6-after-geomfix.RData5.52588438987732
+Warning message:
+In save(file = "6-after-geomfix.RData") : nothing specified to be save()d
+Dissolving river polygons...
+parallel region = 24.1375279426575
+7-after-dissolve.RData25.1055614948273
+Warning message:
+In save(file = "7-after-dissolve.RData") : nothing specified to be save()d
+Casting river polygon into singlepart polygons...
+8-after-singlepart-poly.RData0.0453388690948486
+Warning message:
+In save(file = "8-after-singlepart-poly.RData") :
+  nothing specified to be save()d
+Converting river polygons into river lines in parallel...
+Warning message:
+In save(file = "9-after-part-line.RData") : nothing specified to be save()d
+Joining attributes joined back to basin rivers...
+parallel region = 3.35419535636902
+Warning message:
+In save(file = "10-after-join-rivers.RData") :
+  nothing specified to be save()d
+Generating final output..
+Warning message:
+In save(file = "11-after-join-rivers.RData") :
+  nothing specified to be save()d
+Writing output...
+There were 50 or more warnings (use warnings() to see the first 50)
+total time = 357.379658222198
+parallel total = 33.133022069931
+TIME IN PARALLEL: 9.27109904205314%
+
+real	5m58.293s
+user	2m0.758s
+sys	3m56.060s

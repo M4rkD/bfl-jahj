@@ -3,3 +3,8 @@ Submitted batch job 127658 => running RProf (hopefully more insight) => this fai
 Profiling run using Rprof => 127659 (generate RProf.out)
 Submitted batch job 127745 => Rprof.out with line number info, given by proftools:
 https://cran.r-project.org/web/packages/proftools/vignettes/proftools.pdf
+
+Submitted batch job 127764 => write some details workspace info to file at intervals with timings
+
+
+tramp issues due to git gutter
