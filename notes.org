@@ -6,5 +6,7 @@ https://cran.r-project.org/web/packages/proftools/vignettes/proftools.pdf
 
 Submitted batch job 127764 => write some details workspace info to file at intervals with timings
 
+128413 => run job saving image (previous run failed)
+
 
 tramp issues due to git gutter
