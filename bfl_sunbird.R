@@ -96,7 +96,6 @@ time_now <- Sys.time()
 time_taken <- time_now - time_prev
 time_prev <- time_now
 message("1-load.RData", time_taken) 
-save(file="1-load.RData") 
 
 # Buffer barriers
 message('Buffering barriers for cutting the river...')
@@ -109,7 +108,6 @@ time_now <- Sys.time()
 time_taken <- time_now - time_prev
 time_prev <- time_now
 message("2-after-buffering.RData", time_taken) 
-save(file="2-after-buffering.RData") 
 
 # to make things faster we could only process a subset
 # select river sections with barriers on them and export then only
@@ -126,7 +124,6 @@ time_now <- Sys.time()
 time_taken <- time_now - time_prev
 time_prev <- time_now
 message("3-after-erasing.RData", time_taken) 
-save(file="3-after-erasing.RData") 
 
 #   st_erase = function(x, y) st_difference(x, st_union(y)) # we only need one st_union, not two...
 # union <- st_parallel(buffBarriers, st_union, ncores) %>%
@@ -144,7 +141,6 @@ time_now <- Sys.time()
 time_taken <- time_now - time_prev
 time_prev <- time_now
 message("4-after-diff-buffering.RData", time_taken) 
-save(file="4-after-diff-buffering.RData") 
 
 # Clip river polygons to study site boundary
 clipRiver <- st_parallel(buffRivers, st_crop, ncores, boundary)
@@ -153,7 +149,6 @@ time_now <- Sys.time()
 time_taken <- time_now - time_prev
 time_prev <- time_now
 message("5-after-clip-river.RData", time_taken) 
-save(file="5-after-clip-river.RData") 
 
 # Fix geom just in case
 message('Fixing invald geometry...')
@@ -165,7 +160,6 @@ time_now <- Sys.time()
 time_taken <- time_now - time_prev
 time_prev <- time_now
 message("6-after-geomfix.RData", time_taken) 
-save(file="6-after-geomfix.RData") 
 
 # Dissolving buffered and clipped rivers
 message('Dissolving river polygons...')
@@ -177,7 +171,6 @@ time_now <- Sys.time()
 time_taken <- time_now - time_prev
 time_prev <- time_now
 message("7-after-dissolve.RData", time_taken) 
-save(file="7-after-dissolve.RData") 
 
 message('Casting river polygon into singlepart polygons...')
 singlepartpoly <- st_cast(dissRivers, 'POLYGON') %>%
@@ -187,7 +180,6 @@ time_now <- Sys.time()
 time_taken <- time_now - time_prev
 time_prev <- time_now
 message("8-after-singlepart-poly.RData", time_taken) 
-save(file="8-after-singlepart-poly.RData") 
 
 # # I think this is parallelised. Although it's only 0.5 seconds faster than in series...
 # message('Converting river polygons into river lines in parallel...')
@@ -199,13 +191,11 @@ message('Converting river polygons into river lines in parallel...')
 singlepartline <- do.call(rbind, mclapply(1:nrow(diffRivers),
   function(i){st_cast(diffRivers[i,],"LINESTRING")}))
 
-save(file="9-after-part-line.RData") 
 
 # Bring attributes back together
 message('Joining attributes joined back to basin rivers...')
 joinedRivers <- st_parallel(singlepartline, st_join, ncores, singlepartpoly)
 
-save(file="10-after-join-rivers.RData") 
 
 # calculate components of BFL
 message('Generating final output..')
@@ -226,7 +216,7 @@ BFLS <- joinedRivers %>%
   left_join(fraglen, by = 'id') %>%
   mutate(BFLS = as.numeric(fraglen/basinlen))
 
-save(file="11-after-join-rivers.RData") 
+save.image(file="run-image.RData") 
 
 # write output
 message('Writing output...')
