@@ -1,0 +1,53 @@
+
+Attaching package: ‘dplyr’
+
+The following objects are masked from ‘package:stats’:
+
+    filter, lag
+
+The following objects are masked from ‘package:base’:
+
+    intersect, setdiff, setequal, union
+
+Linking to GEOS 3.7.0, GDAL 2.3.2, PROJ 4.9.3
+Linking to liblwgeom 2.5.0dev r16016, GEOS 3.7.0, PROJ 4.9.3
+number cores detected: 40
+number cores running: 1
+Calculating barrier free length for FR_five_basins.shp using 1 cores.
+Snapping barriers snapped to the river...
+1-load.RData1.02503538131714
+Buffering barriers for cutting the river...
+parallel region = 0.352315664291382
+2-after-buffering.RData2.69799900054932
+Erasing rivers erased using buffered barriers...
+Warning message:
+attribute variables are assumed to be spatially constant throughout all geometries 
+3-after-erasing.RData3.6833246866862
+Buffering differenced rivers...
+parallel region = 1.28015494346619
+4-after-diff-buffering.RData1.34891533851624
+parallel region = 2.01673007011414
+Warning message:
+attribute variables are assumed to be spatially constant throughout all geometries 
+5-after-clip-river.RData2.08776950836182
+Fixing invald geometry...
+parallel region = 2.14203143119812
+6-after-geomfix.RData5.73342895507812
+Dissolving river polygons...
+parallel region = 24.7749454975128
+7-after-dissolve.RData25.8609366416931
+Casting river polygon into singlepart polygons...
+8-after-singlepart-poly.RData0.0494852066040039
+Converting river polygons into river lines in parallel...
+Joining attributes joined back to basin rivers...
+parallel region = 3.48971033096313
+Generating final output..
+Writing output...
+There were 50 or more warnings (use warnings() to see the first 50)
+total time = 380.476677656174
+parallel total = 34.0558879375458
+TIME IN PARALLEL: 8.95084769645753%
+
+real	6m27.472s
+user	2m35.736s
+sys	3m43.627s
