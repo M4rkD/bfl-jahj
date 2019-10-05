@@ -102,9 +102,6 @@ split_river_by_barrier <- function(barrier) {
   # barrier seems to always be the first one in the list, so take the other one
   point <- st_cast(point_on_river, "POINT")[2]
 
-  # This is to avoid need to buffering (i.e. get around floating point precision)
-  point <- st_set_precision(point, precision = 1e-05)
-
   # check that river and point intersect
   #if(!st_intersects(point, river)) {
   #  stop("ERROR: point and river do not intersect")
@@ -113,11 +110,12 @@ split_river_by_barrier <- function(barrier) {
   # split and cast to individual linestring
   river_linestring <- st_cast(st_split(river, point))
   river_linestring['rowname'] <- rownames(river_linestring)
+
+  river_linestring
 }
 
-# doesn't seem to work at the moment (although weirdly it has in the past)
-
 # plot the split rivers
+river_linestring <- split_river_by_barrier(fbarrier)
 ggplot(river_linestring) + geom_sf(aes(color=rowname))
 
 p<-ggplot(frivers) + geom_sf() + geom_sf(data = fbarrier, size=4, color="blue") + geom_sf(data=point, color="red")
