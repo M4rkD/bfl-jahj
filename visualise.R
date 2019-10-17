@@ -12,7 +12,6 @@ load('run-image.RData')
 ## This is much faster than direct computation of distances with lapply (approx 5x)
 within_distance <- function (base, df, distance = 0.001) {
   list <- st_is_within_distance(base, df,distance)
-  
   nearest <- df[list[[1]],]
 }
 

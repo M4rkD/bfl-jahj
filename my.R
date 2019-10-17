@@ -88,19 +88,42 @@ river_for_barrier <- function (barrier) {
   within_distance(barrier, frivers, 0.001)[['ID_DRAIN']]
 }
 
+# parallelise by river:
+- loop over barriers, work out nearest river
+- loop over rivers, fetch barriers on that river, split by barrier
+
+# by barrier
+- loop over barriers:
+- work out nearest river
+- split that river
+- move on to next barrier (not very parallel)
+
+# by barrier
+- loop over barriers, work out nearest river
+
 # Add ID_DRAIN to barriers
 fbarriers$ID_DRAIN <- unlist(lapply(fbarriers[['geometry']], river_for_barrier))
 
+########################################################################################
+# PROBLEM AT THE MOMENT....!!!!
+########################################################################################
+# POINT_TO_RIVER TAKES A LIST OF POINTS AND ALSO A LIST OF RIVERS
+# IN FACT, THE TWO LISTS ARE ALREADY HAVE A KIND OF "ONE-TO-ONE" CORRESPONDENCE
+########################################################################################
+
+
 # can locate nearest points...
-split_river_by_barrier <- function(barrier) {
-  river_id <- st_nearest_feature(barrier, frivers)
-  river <- frivers[river_id,]
+point_to_river <- function(points, river_id) {
 
   # find nearest point on river - returns a line from barrier to projected point
-  point_on_river <- st_nearest_points(barrier, river)
+  lapply(points, function(point){
+    pts <- st_nearest_points(point, frivers[river_id,]) %>%
+      st_cast("POINT")
+    # barrier seems to always be the first one in the list, so take the other one
+  })
 
-  # barrier seems to always be the first one in the list, so take the other one
-  point <- st_cast(point_on_river, "POINT")[2]
+}
+
 
   # check that river and point intersect
   #if(!st_intersects(point, river)) {
@@ -113,6 +136,11 @@ split_river_by_barrier <- function(barrier) {
 
   river_linestring
 }
+
+# associate barrier to a river
+fbarriers_river <- mutate(fbarriers, river_id = st_nearest_feature(geometry, frivers))
+fbarriers_river <- mutate(fbarriers_river, point = point_to_river(geometry, river_id))
+fbarriers_river <- mutate(fbarriers_river, ID_DRAIN = frivers[river_id,][['ID_DRAIN']])
 
 # plot the split rivers
 river_linestring <- split_river_by_barrier(fbarrier)

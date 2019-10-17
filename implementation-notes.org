@@ -47,6 +47,16 @@ Note, 1250 on each
   basinID -> shared between multiple rows
   geometry -> linestring -> looks like a list of pairs of points
 * diffRivers
-This is where it gets interesting...
+rivers which are cut by a barrier are turned into a multiline string
+I think that st_erase actually erases the part of the river by moving the points to delete a section
+* buffRivers
+- convert the lines back to a collection of polygons and multi-polygons (by buffering)
+* clipRiver
+- clips the rivers to the site boundary (e.g. france)
+* geomfix
+- st_make_valid, presumably because clip can cause trouble
+* dissRivers
+- a single multi-part polygon for all the rivers
+- in this case all the overlapping polygons have been dissolved into single polygons
 * IMPORTANT...!
 ** THE WORK IS DIVIDED EVENLY BY NUMBER, APRIORI - not in a queue/workers
